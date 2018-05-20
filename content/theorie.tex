@@ -46,7 +46,56 @@ Die Differentialgleichung kann umgeschrieben werden indem $x_h$ durch die Polari
   \frac{d^2 P_h}{dt^2} +\frac{f_h}{m_h} \frac{d P_h}{dt} + \frac{a_h}{m_h} P_h = \frac{N_q q_h^2}{m_h} E_0 \exp(i\omega t)  .
 \end{equation}
 Die Gleichung\eqref{eq:schwing} ist die Differentialgleichung einer erzwungenen Schwingung.
-Diese hat die Lösung:
+Diese hat die Lösung
 \begin{equation}
-  P_h =\frac{1}{\omega_h ^2 -\omega ^2 + i\frac{f_h}{m_h\omega}}\frac{N_q q_h^2}{m_h} E_0 \exp(i\omega t)
+  P_h =\frac{1}{\omega_h ^2 -\omega ^2 + i\frac{f_h}{m_h}\omega}\frac{N_q q_h^2}{m_h} E_0 \exp(i\omega t) .
 \end{equation}
+Die Gesamte Polarisation beträgt
+\begin{equation}
+  \label{eq:pol}
+  P=\sum_{h} \frac{1}{\omega_h ^2 -\omega ^2 + i\frac{f_h}{m_h}\omega}\frac{N_q q_h^2}{m_h} E_0 \exp(i\omega t) .
+\end{equation}
+Die Polarisation ist gleich der dielektrischen Verschiebung in Materie vermindert um die dielektrische Verschiebung im Vakkum.
+Damit kann Gleichung\eqref{eq:pol} umgeschrieben werden zu
+\begin{equation}
+
+  (\tilde{\varepsilon} -1)\varepsilon_0 = \sum_{h} \frac{1}{\omega_h ^2 -\omega ^2 + i\frac{f_h}{m_h}\omega}\frac{N_q q_h^2}{m_h} .
+\end{equation}
+Durch die abgeleitete Maxwellsche Relation
+\begin{equation}
+  \tilde{n}=\varepsilon
+\end{equation}
+kann der Zusammenhang zwischen Brechungsindex und Lichtfrequenz hergestellt werden.
+Es folgt:
+\begin{equation}
+  \label{eq:n}
+  \tilde{n} =  1 + \sum_{h} \frac{1}{\omega_h ^2 -\omega ^2 + i\frac{f_h}{m_h}\omega}\frac{N_q q_h^2}{m_h \varepsilon_0} .
+\end{equation}
+Dabei ist $\tilde{n}$ eine komplexe Größe der Form
+\begin{equation}
+  \tilde{n} = n(1 - ik) ,
+\end{equation}
+wobei $k$ die Absorbationskonstante von Licht in Materie darstellt.
+Der Verlauf der Dispersionskurve wird für
+\begin{equation}
+  n^2 k \approx 0
+\end{equation}
+betrachtet.
+Die Gleichung\eqref{eq:n} geht dann über in
+\begin{equation}
+  n^2 (\omega) = 1 + \sum_{h} \frac{N_h q_h ^2}{\varepsilon_0 m_h}\frac {1}{\omega ^2 -\omega_h ^2} .
+\end{equation}
+Aufgrund der Messbarkeit wird $\omega$ durch $\lambda$ ersetzt.
+Damit folgt:
+\begin{equation}
+  n^2 (\lambda) = 1 + \sum_{h} \frac{N_h q_h ^2}{4 \pi^2 c^2 \varepsilon_0 m_h}\frac{\lambda^2\lambda_h ^2}{\lambda^2 - \lambda_h ^2} .
+\end{equation}
+Wenn die Betrachtete Materie nur die Absorptionsstelle $\lambda_1$ aufweist, dann gilt für $\lambda << \lambda_1$
+\begin{equation}
+  n(\lambda) = 1 + \frac{N_1 q_1 ^2 \lambda_1 ^2}{4 \pi^2 c^2 \varepsilon_0 m_1}(1 + (\frac{\lambda_1}{\lambda})^2 + (\frac{\lambda_1}{\lambda})^4 + ...)
+\end{equation}
+und für $\lambda >> \lambda_1$
+\begin{equation}
+  n(\lambda) = 1 - \frac{N_1 q_1 ^2 }{4 \pi^2 c^2 \varepsilon_0 m_1}(\lambda^2+ \frac{\lambda^4}{\lambda_1 ^2} + \frac{\lambda^6}{\lambda_1 ^4} + ...)  .
+\end{equation}
+Damit entstehen die beiden Dispersionskurven in Abbildung.
