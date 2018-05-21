@@ -1,0 +1,11 @@
+##
+#omega_r/degree omega_l/degree	wellenlänge #farbe
+207.4 89.6		644		#rot
+206.7 90.1		577		#gelb
+206.4 90.5		546		#grün
+205.9 91.0		509		#blaugrün
+205.4 91.4		480		#hellblau
+205.1 91.7		468		#blau
+204.3 92.5		436		#blauviolett
+203.3 93.4		405		#violett
+

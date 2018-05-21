@@ -1,2 +1,151 @@
 \section{Auswertung}
 \label{sec:Auswertung}
+Die Messwerte für den Winkel $\phi$ des Prismas sind in Tabelle \ref{tab:phimess} aufgetragen.
+\begin{table}[H]
+    \caption{Messwerte der $\phi$-Messung.}
+    \label{tab:phimess}
+    \centering
+    \begin{tabular}{S[table-format=3.1(0)e0] 
+					S[table-format=3.1(0)e0] 
+					S[table-format=2.2(0)e0] }
+        \toprule
+        {$\phi_r/\si{\degree}$} &
+        {$\phi_l/\si{\degree}$} &
+        {$\phi/\si{\degree}$}  \\
+		\midrule
+139.3   & 259.4  & 60.05	\\
+142.4   & 262.4  & 60.0	\\
+136.6   & 256.4  & 59.9	\\
+143.4   & 263.3  & 59.95	\\
+138.6   & 258.5  & 59.95	\\
+146.0   & 266.0  & 60.0	\\
+140.6   & 260.4  & 59.9	\\
+		\bottomrule
+    \end{tabular}
+\end{table}
+\noindent
+Es ergibt sich somit ein mittlerer Winkel von:
+\begin{equation}
+	\overline\phi = \SI{59.96\pm0.02}{\degree}
+\end{equation}
+Die Messwerte der $\eta$-Messung sind in Tabelle \ref{tab:etamess} aufgetragen. Zusätzlich sind die Wellenlängen der beobachteten Spektrallinien\cite{cd}\cite{hg} aufgetragen.
+\begin{table}[H]
+    \caption{Messwerte der $\eta$-Messung.}
+    \label{tab:etamess}
+    \centering
+    \begin{tabular}{S[table-format=3.1(0)e0] 
+					S[table-format=2.1(0)e0] 
+					S[table-format=3(0)e0] 
+					S[table-format=2.1(0)e0] }
+        \toprule
+        {$\Omega_r/\si{\degree}$} &
+        {$\Omega_l/\si{\degree}$} &
+        {$\lambda/\si{\nano\meter}$}  &
+        {$\eta/\si{\degree}$} \\
+		\midrule
+207.4   & 89.6   & 644  & 62.2\\
+206.7   & 90.1   & 577  & 63.4\\
+206.4   & 90.5   & 546  & 64.1\\
+205.9   & 91.0   & 509  & 65.1\\
+205.4   & 91.4   & 480  & 66.0\\
+205.1   & 91.7   & 468  & 66.6\\
+204.3   & 92.5   & 436  & 68.2\\
+203.3   & 93.4   & 405  & 70.1\\
+		\bottomrule
+    \end{tabular}
+\end{table}
+\noindent
+Der Winkel $\eta$ berechnet sich gemäß Gleichung \eqref{eq:eta}.
+Die Gleichung \eqref{eq:snell} kann auf die folgende Form gebracht werden:
+\begin{equation}
+	n = \frac{\sin{\frac{\eta+\phi}{2}}}{\sin{\frac{\phi}{2}}}
+\end{equation}
+Es ergeben sich folgende Wertepaare $(n_i, \lambda_i)$:
+\begin{table}[H]
+    \caption{Messwerte der $\eta$-Messung.}
+    \label{tab:nl}
+    \centering
+    \begin{tabular}{S[table-format=1.4(6)e0] 
+					S[table-format=3.0(0)e0] }
+        \toprule
+        {$n$}  &
+        {$\lambda/\si{\nano\meter}$}  \\
+		\midrule
+1.7516\pm0.0004         & 644\\
+1.7616\pm0.0004         & 577\\
+1.7674\pm0.0004         & 546\\
+1.7755\pm0.0004         & 509\\
+1.7827\pm0.0004         & 480\\
+1.7874\pm0.0004         & 468\\
+1.7998\pm0.0004         & 436\\
+1.8141\pm0.0004         & 405\\
+		\bottomrule
+    \end{tabular}
+\end{table}
+\noindent
+Diese Wertepaare können nun auf zwei verschiedene Möglichkeiten genähert werden, wie in Gleichung \eqref{eq:f1} oder so wie in Gleichung \eqref{eq:f2}.
+Für beide Funktionen werden die Parameter mittels Python/SciPy optimiert und im Diagramm \ref{fig:dis} aufgetragen.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{build/n.pdf}
+  \caption{Dispersionskurven aus den zwei verschiedenen Ansätzen \eqref{eq:f1} und \eqref{eq:f2}.}
+  \label{fig:dis}
+\end{figure}
+\noindent
+Die Parameter ergeben sich zu:
+\begin{align}
+	A_0 =& \SI{2.94\pm0.01}{} \\
+	A_2 =& \SI{4.97\pm0.33e4}{\per\nano\meter\squared} \\
+	A_2 =& \SI{1.25\pm0.39e9}{\per\nano\meter\tothe{4}} \\
+\nonumber \\
+	A_2' =& \SI{-1.62\pm0.00e-5}{\per\nano\meter\squared} \\
+	A_4' =& \SI{2.81\pm0.01e-11}{\per\nano\meter\tothe{4}} 
+\end{align}
+Die Summe der Abweichungsquadrate wird gemäß
+\begin{equation}
+	s^2 = \frac{1}{N-2}\sum_i^N\left(n^2(\lambda_i) - f(\lambda_i)\right)^2
+\end{equation}
+bestimmt.
+Es ergeben sich folgende Werte:
+\begin{align}
+	s^2 =& \num{2.417\pm0.014e-6} \\
+	{s'}^2 =& \num{5.327\pm0.011e-2} 
+\end{align}
+Im Folgenden wird deshalb nur die Vorschrift aus Gleichung \eqref{eq:f1} verwendet.
+Aus der Herleitung von Gleichung \eqref{eq:f1} erkennt man, dass
+\begin{align}
+	A_0 =& \alpha + 1 \\
+	A_2 =& \alpha\lambda_1^2 \\
+	\lambda_1 =& \sqrt{\frac{A_2}{A_0 - 1}} 
+\end{align}
+gelten muss und außerdem
+\begin{align}
+	A_2 =& \alpha\lambda_1^2 \\
+	A_4 =& \alpha\lambda_1^4 \\
+	\lambda_1 =& \sqrt{\frac{A_4}{A_2}}, 
+\end{align}
+wobei die unphysikalischen Lösungen $\lambda_1 = 0$ und $\lambda_1 < 0$ außer Acht gelassen werden.
+Aus den Ansätzen ergibt sich jeweils ein Wert von:
+\begin{align}
+	\lambda_1 =& \SI{160\pm5}{\nano\meter} \\
+	\lambda_1 =& \SI{159\pm25}{\nano\meter} 
+\end{align}
+Die Abbesche Zahl, ein Maß für die Farbzersteruung, berechnet sich wie folgt:
+\begin{equation}
+	\nu = \frac{n(\SI{589}{\nano\meter})-1}{n(\SI{486}{\nano\meter})-n(\SI{656}{\nano\meter})}
+\end{equation}
+Mit der zuvor bestimmten Dispersionsfunktion ergibt sich ein Wert von:
+\begin{equation}
+	\nu = \num{19.0\pm1.3}
+\end{equation}
+Das Auflösungsvermögen gibt an, wie nah zwei Wellenlängen sich sein dürfen, damit sie immernoch unterscheidbar sind.
+Es ist definiert durch
+\begin{equation}
+	A := \frac{\lambda}{\symup\Delta\lambda} = b\frac{\symup dn}{\symup{d\lambda}},
+\end{equation}
+wobei $b=\SI{3}{\centi\meter}$\cite{v402} die Basislänge des Prismas darstellt.
+Es ergeben sich beispielhaft Werte für $A$ von:
+\begin{align}
+	A(\SI{656}{\nano\meter}) =& \num{-1.18\pm0.08e4} \\ 
+	A(\SI{486}{\nano\meter}) =& \num{-3.15\pm0.24e4} 
+\end{align}
