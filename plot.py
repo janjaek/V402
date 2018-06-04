@@ -29,35 +29,34 @@ eta = 180 - (data[0]-data[1])
 #	print(data[0][i], data[1][i], data[2][i], eta[i], sep=" \t&", end="\\\\\n")
 
 
-def f1(lamb, A0, A2, A4):
-	return A0 + A2/(lamb**2) + A4/(lamb**4)
+def f1(lamb, A0, A2):
+	return A0 + A2/(lamb**2)
 
-def f2(lamb, A2, A4):
-	return 1 - A2*(lamb**2) - A4*(lamb**4)
+def f2(lamb, A0, A2):
+	return A0 - A2*(lamb**2)
 
 l = data[2]
 n = unp.sin(unp.radians((eta + phi)/2))/unp.sin(unp.radians(phi/2))
 #n = np.sin(np.radians((eta + phi)/2))/np.sin(np.radians(phi/2))
 
 
-params, covar = curve_fit(f1, l, unp.nominal_values(n**2), absolute_sigma=True, sigma = unp.std_devs(n**2), p0=(1.728, 13420, 100000))
+params, covar = curve_fit(f1, l, unp.nominal_values(n**2), absolute_sigma=True, sigma = unp.std_devs(n**2), p0=(1.728, 13420))
 uparams = unp.uarray(params, np.sqrt(np.diag(covar)))
-print("Parameter A0, A2 und A4 für f: ")
+print("Parameter A0, und A2 für f: ")
 print(uparams)
 
 sum = 0
 for i in range(n.size):
-	sum += (n[i]**2 - params[0] - params[1]/(l[i])**2 - params[2]/(l[i]**4))**2
+	sum += (n[i]**2 - params[0] - params[1]/(l[i])**2)**2
 sum /= n.size - 2
 print("s^2 = ", sum, sep="")
 print(unp.sqrt(uparams[1]/(uparams[0]-1)))
-print(unp.sqrt(uparams[2]/uparams[1]))
 
 print("nu =", (f1(589, *uparams) - 1)/(f1(486, *uparams) - f1(656, *uparams)), sep = " ")
 
 print("A = ")
-print(((-2*uparams[1]/(656**3)) - 4*uparams[2]/(656**5)) * 3e7)
-print(((-2*uparams[1]/(486**3)) - 4*uparams[2]/(486**5)) * 3e7)
+print(((-2*uparams[1]/(656**3)) ) * 3e7)
+print(((-2*uparams[1]/(486**3)) ) * 3e7)
 
 lin = np.linspace(l[0], l[-1], 10000)
 plt.plot(lin, f1(lin, *params), color="xkcd:orange", label="Fit mit Funktion f")
@@ -67,12 +66,12 @@ plt.errorbar(l, unp.nominal_values(n**2), yerr = unp.std_devs(n**2), elinewidth=
 
 params, covar = curve_fit(f2, l, unp.nominal_values(n**2), absolute_sigma=True, sigma = unp.std_devs(n**2))
 uparams = unp.uarray(params, np.sqrt(np.diag(covar)))
-print("Parameter A'2 und A'4 für f': ")
+print("Parameter A'0 und A'2 für f': ")
 print(uparams)
 
 sum = 0
 for i in range(n.size):
-	sum += (n[i]**2 - 1 + params[0]*(l[i])**2 + params[1]*(l[i]**4))**2
+	sum += (n[i]**2 - params[0] + params[1]*(l[i])**2 )**2
 sum /= n.size - 2
 print("s'^2 = ", sum, sep="")
 

@@ -94,12 +94,13 @@ Für beide Funktionen werden die Parameter mittels Python/SciPy optimiert und im
 \noindent
 Die Parameter ergeben sich zu:
 \begin{align}
-	A_0 =& \SI{2.94\pm0.01}{} \\
-	A_2 =& \SI{4.97\pm0.33e4}{\per\nano\meter\squared} \\
-	A_2 =& \SI{1.25\pm0.39e9}{\per\nano\meter\tothe{4}} \\
+	A_0 =& \SI{2.921\pm0.002}{} \\
+	A_2 =& \SI{6.02\pm0.04e4}{\per\nano\meter\squared} \\
+%	A_2 =& \SI{1.25\pm0.39e9}{\per\nano\meter\tothe{4}} \\
 \nonumber \\
-	A_2' =& \SI{-1.62\pm0.00e-5}{\per\nano\meter\squared} \\
-	A_4' =& \SI{2.81\pm0.01e-11}{\per\nano\meter\tothe{4}} 
+	A_0' =& \SI{3.386\pm0.002}{} \\
+	A_2' =& \SI{8.25\pm0.06e-7}{\per\nano\meter\squared} \\
+%	A_4' =& \SI{2.81\pm0.01e-11}{\per\nano\meter\tothe{4}} 
 \end{align}
 Die Summe der Abweichungsquadrate wird gemäß
 \begin{equation}
@@ -108,8 +109,8 @@ Die Summe der Abweichungsquadrate wird gemäß
 bestimmt.
 Es ergeben sich folgende Werte:
 \begin{align}
-	s^2 =& \num{2.417\pm0.014e-6} \\
-	{s'}^2 =& \num{5.327\pm0.011e-2} 
+	s^2 =& \num{6.08\pm0.08e-6} \\
+	{s'}^2 =& \num{5.77\pm0.04e-4} 
 \end{align}
 Im Folgenden wird deshalb nur die Vorschrift aus Gleichung \eqref{eq:f1} verwendet.
 Aus der Herleitung von Gleichung \eqref{eq:f1} erkennt man, dass
@@ -118,34 +119,46 @@ Aus der Herleitung von Gleichung \eqref{eq:f1} erkennt man, dass
 	A_2 =& \alpha\lambda_1^2 \\
 	\lambda_1 =& \sqrt{\frac{A_2}{A_0 - 1}} 
 \end{align}
-gelten muss und außerdem
-\begin{align}
-	A_2 =& \alpha\lambda_1^2 \\
-	A_4 =& \alpha\lambda_1^4 \\
-	\lambda_1 =& \sqrt{\frac{A_4}{A_2}}, 
-\end{align}
+gelten muss,
 wobei die unphysikalischen Lösungen $\lambda_1 = 0$ und $\lambda_1 < 0$ außer Acht gelassen werden.
-Aus den Ansätzen ergibt sich jeweils ein Wert von:
+Es folgt:
 \begin{align}
-	\lambda_1 =& \SI{160\pm5}{\nano\meter} \\
-	\lambda_1 =& \SI{159\pm25}{\nano\meter} 
+	\lambda_1 =& \SI{177.0\pm0.7}{\nano\meter} \\
 \end{align}
+Die Unsicherheit ergibt sich aus:
+\begin{equation}
+	\symup\Delta\lambda_1 = \sqrt{\left(\sqrt{\frac{A_2}{A_0-1}}\frac{\symup\Delta A_2}{2A_2}\right)^2 + \left(\left(\frac{A_2}{A_0-1}\right)^\frac{3}{2}\frac{\symup\Delta A_0}{2A_2}\right)^2 }
+\end{equation}
 Die Abbesche Zahl, ein Maß für die Farbzersteruung, berechnet sich wie folgt:
 \begin{equation}
 	\nu = \frac{n(\SI{589}{\nano\meter})-1}{n(\SI{486}{\nano\meter})-n(\SI{656}{\nano\meter})}
 \end{equation}
+Die Unsicherheit ist hierbei:
+\begin{equation}
+	\symup\Delta\nu = \sqrt{
+		\left( \frac{\symup\Delta n(\SI{589}{\nano\meter})}{n(\SI{486}{\nano\meter})-n(\SI{656}{\nano\meter})} \right)^2 +
+		\left( \frac{(n(\SI{589}{\nano\meter})-1)(\symup\Delta n(\SI{486}{\nano\meter})+\symup\Delta n(\SI{656}{\nano\meter}))}{(n(\SI{486}{\nano\meter})-n(\SI{656}{\nano\meter}))^2)}\right)^2}
+\end{equation}
+Wobei gegeben ist:
+\begin{equation}
+	\symup\Delta n(\lambda) = \sqrt{{\symup\Delta A_0}^2 + \left(\frac{\symup\Delta A_2}{\lambda^2}\right)^2}
+\end{equation}
 Mit der zuvor bestimmten Dispersionsfunktion ergibt sich ein Wert von:
 \begin{equation}
-	\nu = \num{19.0\pm1.3}
+	\nu = \num{18.23\pm0.13}
 \end{equation}
 Das Auflösungsvermögen gibt an, wie nah zwei Wellenlängen sich sein dürfen, damit sie immernoch unterscheidbar sind.
 Es ist definiert durch
 \begin{equation}
-	A := \frac{\lambda}{\symup\Delta\lambda} = b\frac{\symup dn}{\symup{d\lambda}},
+	A := \frac{\lambda}{\symup\Delta\lambda} = b\left\lvert\frac{\symup dn}{\symup{d\lambda}}\right\rvert = b\left\lvert\frac{2A_2}{\lambda^3}\right\rvert,
 \end{equation}
 wobei $b=\SI{3}{\centi\meter}$\cite{v402} die Basislänge des Prismas darstellt.
+Die Unsicherheit lässt sich bestimmen nach:
+\begin{equation}
+	\symup\Delta A = b\left\lvert\frac{2\symup\Delta A_2}{\lambda^3}\right\rvert
+\end{equation}
 Es ergeben sich beispielhaft Werte für $A$ von:
 \begin{align}
-	A(\SI{656}{\nano\meter}) =& \num{-1.18\pm0.08e4} \\ 
-	A(\SI{486}{\nano\meter}) =& \num{-3.15\pm0.24e4} 
+	A(\SI{656}{\nano\meter}) =& \num{1.28\pm0.01e4} \\ 
+	A(\SI{486}{\nano\meter}) =& \num{3.15\pm0.02e4} 
 \end{align}
